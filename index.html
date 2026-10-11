@@ -118,7 +118,38 @@
         ::-webkit-scrollbar-track { background: #050B14; }
         ::-webkit-scrollbar-thumb { background: #131e32; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00f6ff; }
-    </style>
+   
+
+
+
+
+
+.chao-mung {
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+    display: inline-block;
+    animation: chay-qua-lai 6s ease-in-out infinite alternate;
+}
+
+.chao-mung .ky-tu {
+    display: inline-block;
+    animation: song-ky-tu 1s ease-in-out infinite;
+}
+
+@keyframes chay-qua-lai {
+    from { transform: translateX(-80px); }
+    to   { transform: translateX(80px); }
+}
+
+@keyframes song-ky-tu {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+
+ </style>
+
 
 
 </head>
@@ -157,16 +188,43 @@
         
         <div class="text-center w-full mb-12 mt-4">
            
-              <div style="font-size: 22px; font-weight: bold;">
-    <span style="color: #FFD700;">
-        Nhiệt liệt chào mừng ngày
-    </span>
-    <span class="text-gradient-primary">
-        Phụ nữ Việt Nam 20/10
-    </span>
-</div>
+             
+
+
+<div style="width:100%; overflow:hidden; text-align:center; padding:12px 0;">
+    <div class="chao-mung" id="dongChaoMung">
+        <span style="color:#FFD700;">
+            Nhiệt liệt chào mừng ngày
+        </span>
+        <span style="
+            color:#FFFFFF !important;
+            -webkit-text-fill-color:#FFFFFF !important;
+            font-weight:900;
             
-        </div>
+        "> Phụ nữ Việt Nam 20/10</span>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('#dongChaoMung > span').forEach(span => {
+    const noiDung = span.textContent;
+    span.textContent = '';
+
+    [...noiDung].forEach((kyTu, i) => {
+        const s = document.createElement('span');
+        s.className = 'ky-tu';
+        s.innerHTML = kyTu === ' ' ? '&nbsp;' : kyTu;
+        s.style.animationDelay = `${i * 0.07}s`;
+        span.appendChild(s);
+    });
+});
+</script>
+
+
+
+
+
+
 
         <div id="main-dashboard" class="w-full">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -203,7 +261,8 @@
     </main>
 
     <footer class="mt-auto py-6 border-t border-white/5 text-center relative z-10 bg-black/40 backdrop-blur-md">
-        <p class="text-slate-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-1">Thiết kế bỏi GPT</p>
+        <p class="text-slate-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-1">Thiết kế bỏi Quý + GPT</p>
+
         
     </footer>
 <script>
@@ -264,6 +323,8 @@
     });
 </script>
   
+
+
 <meta charset="UTF-8">
 <footer id="copyright"></footer>
 
